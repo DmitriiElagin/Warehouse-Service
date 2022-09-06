@@ -2,10 +2,8 @@ package elagin.dmitrii.warehouse_service.dao;
 
 import elagin.dmitrii.warehouse_service.entities.Product;
 
-import java.util.Set;
+import java.util.List;
 
 public interface ProductDAO {
-    Set<Product> findAll();
-
-
+    List<Product> findAll();
 }

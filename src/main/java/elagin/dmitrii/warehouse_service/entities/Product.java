@@ -21,7 +21,7 @@ public class Product {
     @Column(name = "purchase_price", nullable = false)
     private BigDecimal purchasePrice;
 
-    @Column(name = "sell_price")
+    @Column(name = "sale_price")
     private BigDecimal sellPrice;
 
     public Product() {

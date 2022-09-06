@@ -8,12 +8,10 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.orm.jpa.JpaTransactionManager;
-import org.springframework.orm.jpa.JpaVendorAdapter;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
-
 
 import javax.sql.DataSource;
 import java.util.Properties;
@@ -36,12 +34,12 @@ public class PersistenceJPAConfig {
 
     @Bean
     public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
-        LocalContainerEntityManagerFactoryBean factoryBean = new LocalContainerEntityManagerFactoryBean();
+        final var factoryBean = new LocalContainerEntityManagerFactoryBean();
         factoryBean.setDataSource(dataSource());
         factoryBean.setPackagesToScan(environment.getProperty("hibernate.packagesToScan"));
         factoryBean.setPersistenceUnitName("warehouse-service");
 
-        JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
+        final var vendorAdapter = new HibernateJpaVendorAdapter();
         factoryBean.setJpaVendorAdapter(vendorAdapter);
 
         factoryBean.setJpaProperties(getAdditionalProperties());
@@ -50,7 +48,7 @@ public class PersistenceJPAConfig {
     }
 
     private Properties getAdditionalProperties() {
-        final Properties properties = new Properties();
+        final var properties = new Properties();
         properties.setProperty("hibernate.dialect", environment.getProperty("hibernate.dialect"));
         properties.setProperty("hibernate.hbm2ddl.auto", environment.getProperty("hibernate.hbm2ddl.auto"));
 
@@ -58,9 +56,9 @@ public class PersistenceJPAConfig {
     }
 
     private HikariConfig getHikariConfig() {
-        final HikariConfig config =  new HikariConfig();
+        final var config = new HikariConfig();
 
-        String poolSize = environment.getProperty("datasource.main.pool-size");
+        final var poolSize = environment.getProperty("datasource.main.pool-size");
 
         config.setDriverClassName(environment.getProperty("datasource.main.driver-class-name"));
         config.setJdbcUrl(environment.getProperty("datasource.main.jdbc-url"));
@@ -76,7 +74,7 @@ public class PersistenceJPAConfig {
 
     @Bean
     public PlatformTransactionManager transactionManager() {
-        JpaTransactionManager transactionManager = new JpaTransactionManager();
+        final var transactionManager = new JpaTransactionManager();
         transactionManager.setEntityManagerFactory(entityManagerFactory().getObject());
 
         return transactionManager;
