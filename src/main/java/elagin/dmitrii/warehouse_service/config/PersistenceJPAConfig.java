@@ -2,28 +2,29 @@ package elagin.dmitrii.warehouse_service.config;
 
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
-import org.hibernate.dialect.PostgreSQL10Dialect;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
-import org.springframework.orm.jpa.JpaDialect;
+import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.JpaVendorAdapter;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
-
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
+import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
+
 
 import javax.sql.DataSource;
 import java.util.Properties;
 
 @Configuration
 @PropertySource("resources/application.properties")
-public class PersistnceJPAConfig {
+@EnableTransactionManagement
+public class PersistenceJPAConfig {
     final private Environment environment;
 
-    public PersistnceJPAConfig(Environment environment) {
+    public PersistenceJPAConfig(Environment environment) {
         this.environment = environment;
     }
 
@@ -73,7 +74,11 @@ public class PersistnceJPAConfig {
         return config;
     }
 
+    @Bean
+    public PlatformTransactionManager transactionManager() {
+        JpaTransactionManager transactionManager = new JpaTransactionManager();
+        transactionManager.setEntityManagerFactory(entityManagerFactory().getObject());
 
-
-
+        return transactionManager;
+    }
 }
