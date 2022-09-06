@@ -32,7 +32,6 @@ public class TestConfig {
         final var vendorAdapter = new HibernateJpaVendorAdapter();
         factoryBean.setJpaVendorAdapter(vendorAdapter);
 
-
         return factoryBean;
     }
 

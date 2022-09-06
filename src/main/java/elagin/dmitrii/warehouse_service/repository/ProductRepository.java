@@ -17,4 +17,11 @@ public class ProductRepository implements ProductDAO {
     public List<Product> findAll() {
         return entityManager.createQuery("from Product", Product.class).getResultList();
     }
+
+    @Override
+    public List<Product> findByName(String name) {
+        return entityManager.createQuery(
+                String.format("from Product p where p.name = '%s'", name),
+                Product.class).getResultList();
+    }
 }

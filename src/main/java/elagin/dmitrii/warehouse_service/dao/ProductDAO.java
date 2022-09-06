@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface ProductDAO {
     List<Product> findAll();
+
+    List<Product> findByName(String name);
 }
