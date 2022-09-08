@@ -1,41 +1,42 @@
-package elagin.dmitrii.warehouse_service.entities;
+package elagin.dmitrii.warehouse_service.dto;
 
+import elagin.dmitrii.warehouse_service.entities.Product;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
 import java.math.BigDecimal;
 import java.util.Objects;
 
-@Entity
-public class Product {
-    @Id
-    @Column(name = "article_number", nullable = false)
+public class ProductResponse {
+    @NotNull
     private Long articleNumber;
 
-    @Column(nullable = false)
+    @NotBlank
     @Size(min = 2, max = 128)
     private String name;
 
-    @Column(name = "purchase_price", nullable = false)
+    @NotNull
     private BigDecimal purchasePrice;
 
-    @Column(name = "sale_price")
     private BigDecimal salePrice;
 
-    public Product() {
+    public ProductResponse() {
     }
 
-    public Product(Long articleNumber, String name, BigDecimal purchasePrice, BigDecimal salePrice) {
+    public ProductResponse(Long articleNumber, String name, BigDecimal purchasePrice, BigDecimal salePrice) {
         this.articleNumber = articleNumber;
         this.name = name;
         this.purchasePrice = purchasePrice;
         this.salePrice = salePrice;
     }
 
-    public Product(Long articleNumber, String name, BigDecimal purchasePrice) {
-       this(articleNumber, name, purchasePrice, null);
+    public ProductResponse(Product product) {
+        this(product.getArticleNumber(), product.getName(), product.getPurchasePrice(), product.getSalePrice());
+    }
+
+    public ProductResponse(Long articleNumber, String name, BigDecimal purchasePrice) {
+        this(articleNumber, name, purchasePrice, null);
     }
 
     public Long getArticleNumber() {
@@ -66,8 +67,8 @@ public class Product {
         return salePrice;
     }
 
-    public void setSalePrice(BigDecimal sellPrice) {
-        this.salePrice = sellPrice;
+    public void setSalePrice(BigDecimal salePrice) {
+        this.salePrice = salePrice;
     }
 
     @Override
@@ -84,7 +85,7 @@ public class Product {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Product product = (Product) o;
+        ProductResponse product = (ProductResponse) o;
         return articleNumber.equals(product.articleNumber) && name.equals(product.name) && purchasePrice.equals(product.purchasePrice) && Objects.equals(salePrice, product.salePrice);
     }
 

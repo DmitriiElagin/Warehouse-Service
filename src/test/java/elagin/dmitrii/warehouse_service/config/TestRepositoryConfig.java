@@ -1,7 +1,7 @@
-package elagin.dmitrii.warehouse_service.repository.config;
+package elagin.dmitrii.warehouse_service.config;
 
+import elagin.dmitrii.warehouse_service.repository.ProductRepository;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
@@ -10,16 +10,18 @@ import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import javax.sql.DataSource;
 import java.util.Properties;
 
 @Configuration
-@EnableWebMvc
 @EnableTransactionManagement
-@ComponentScan("elagin.dmitrii.warehouse_service")
-public class TestConfig {
+public class TestRepositoryConfig {
+    @Bean
+    public ProductRepository productRepository() {
+        return new ProductRepository();
+    }
+
     @Bean
     public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
         final var factoryBean = new LocalContainerEntityManagerFactoryBean();
