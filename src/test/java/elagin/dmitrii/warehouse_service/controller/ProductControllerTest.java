@@ -1,14 +1,12 @@
 package elagin.dmitrii.warehouse_service.controller;
 
-import elagin.dmitrii.warehouse_service.config.TestControllerConfig;
 import elagin.dmitrii.warehouse_service.dto.ProductResponse;
 import elagin.dmitrii.warehouse_service.service.ProductManagementService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
-import org.springframework.test.context.web.WebAppConfiguration;
+import org.springframework.test.context.junit.jupiter.web.SpringJUnitWebConfig;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
@@ -24,8 +22,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@SpringJUnitConfig(TestControllerConfig.class)
-@WebAppConfiguration
+@SpringJUnitWebConfig(TestControllerConfig.class)
 class ProductControllerTest {
     @Autowired
     WebApplicationContext webApplicationContext;

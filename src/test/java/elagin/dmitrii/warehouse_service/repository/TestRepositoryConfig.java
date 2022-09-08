@@ -1,4 +1,4 @@
-package elagin.dmitrii.warehouse_service.config;
+package elagin.dmitrii.warehouse_service.repository;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -17,7 +17,7 @@ import java.util.Properties;
 @Configuration
 @EnableTransactionManagement
 @ComponentScan("elagin.dmitrii.warehouse_service.repository")
-public class TestRepositoryConfig {
+class TestRepositoryConfig {
     @Bean
     public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
         final var factoryBean = new LocalContainerEntityManagerFactoryBean();

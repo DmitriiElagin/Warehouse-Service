@@ -1,4 +1,4 @@
-package elagin.dmitrii.warehouse_service.config;
+package elagin.dmitrii.warehouse_service.service;
 
 import elagin.dmitrii.warehouse_service.repository.ProductRepository;
 import org.mockito.Mockito;
@@ -10,7 +10,7 @@ import javax.persistence.EntityManagerFactory;
 
 @Configuration
 @ComponentScan("elagin.dmitrii.warehouse_service.service")
-public class TestServiceConfig {
+class TestServiceConfig {
     @Bean
     public ProductRepository mockRepository() {
         return Mockito.mock(ProductRepository.class);

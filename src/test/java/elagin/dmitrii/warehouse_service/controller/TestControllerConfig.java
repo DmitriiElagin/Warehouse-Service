@@ -1,4 +1,4 @@
-package elagin.dmitrii.warehouse_service.config;
+package elagin.dmitrii.warehouse_service.controller;
 
 import elagin.dmitrii.warehouse_service.service.ProductManagementService;
 import elagin.dmitrii.warehouse_service.service.ProductManagementServiceImpl;
@@ -11,7 +11,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 @Configuration
 @ComponentScan("elagin.dmitrii.warehouse_service.controller")
 @EnableWebMvc
-public class TestControllerConfig {
+class TestControllerConfig {
     @Bean
     public ProductManagementService mockProductManagementService() {
         return Mockito.mock(ProductManagementServiceImpl.class);

@@ -1,17 +1,14 @@
 package elagin.dmitrii.warehouse_service.repository;
 
-import elagin.dmitrii.warehouse_service.config.TestRepositoryConfig;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.jdbc.Sql;
-import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
-import org.springframework.test.context.web.WebAppConfiguration;
+import org.springframework.test.context.junit.jupiter.web.SpringJUnitWebConfig;
 import org.springframework.transaction.annotation.Transactional;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-@SpringJUnitConfig(TestRepositoryConfig.class)
-@WebAppConfiguration
+@SpringJUnitWebConfig(TestRepositoryConfig.class)
 @Transactional
 @Sql(value = "classpath:data.sql")
 class ProductRepositoryTest {
