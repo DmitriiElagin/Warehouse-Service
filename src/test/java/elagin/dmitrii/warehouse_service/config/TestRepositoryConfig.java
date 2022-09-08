@@ -1,7 +1,7 @@
 package elagin.dmitrii.warehouse_service.config;
 
-import elagin.dmitrii.warehouse_service.repository.ProductRepository;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
@@ -16,12 +16,8 @@ import java.util.Properties;
 
 @Configuration
 @EnableTransactionManagement
+@ComponentScan("elagin.dmitrii.warehouse_service.repository")
 public class TestRepositoryConfig {
-    @Bean
-    public ProductRepository productRepository() {
-        return new ProductRepository();
-    }
-
     @Bean
     public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
         final var factoryBean = new LocalContainerEntityManagerFactoryBean();
