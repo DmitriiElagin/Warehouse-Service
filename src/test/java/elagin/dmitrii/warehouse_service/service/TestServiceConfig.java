@@ -1,6 +1,7 @@
 package elagin.dmitrii.warehouse_service.service;
 
 import elagin.dmitrii.warehouse_service.repository.ProductRepository;
+import elagin.dmitrii.warehouse_service.repository.WarehouseRepository;
 import org.mockito.Mockito;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -12,8 +13,13 @@ import javax.persistence.EntityManagerFactory;
 @ComponentScan("elagin.dmitrii.warehouse_service.service")
 class TestServiceConfig {
     @Bean
-    public ProductRepository mockRepository() {
+    public ProductRepository mockProductRepository() {
         return Mockito.mock(ProductRepository.class);
+    }
+
+    @Bean
+    public WarehouseRepository mockWarehouseRepository() {
+        return Mockito.mock(WarehouseRepository.class);
     }
 
     @Bean

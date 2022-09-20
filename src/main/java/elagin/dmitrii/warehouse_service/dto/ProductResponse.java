@@ -1,22 +1,16 @@
 package elagin.dmitrii.warehouse_service.dto;
 
 import elagin.dmitrii.warehouse_service.entities.Product;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
 
 import java.math.BigDecimal;
 import java.util.Objects;
 
 public class ProductResponse {
-    @NotNull
+
     private Long articleNumber;
 
-    @NotBlank
-    @Size(min = 2, max = 128)
     private String name;
 
-    @NotNull
     private BigDecimal purchasePrice;
 
     private BigDecimal salePrice;
